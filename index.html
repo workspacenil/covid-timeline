@@ -52,7 +52,7 @@
     text-align: center; padding: 24px; overflow: hidden;
     background: radial-gradient(ellipse at 50% 120%, #e8f1ff 0%, var(--bg) 60%);
   }
-  #particles { position: absolute; inset: 0; z-index: 0; }
+  #particles { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
   .hero-inner { position: relative; z-index: 1; }
   .hero-kicker {
     font-size: 15px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
@@ -154,19 +154,26 @@
   footer a { color: var(--accent); text-decoration: none; font-size: 15px; line-height: 2; display: block; }
   footer a:hover { text-decoration: underline; }
 
-  [data-en] { display: none; }
-  html[lang="en"] [data-ca] { display: none; }
-  html[lang="en"] [data-en] { display: revert; }
-  html[lang="en"] h1 [data-en], html[lang="en"] .hero-kicker[data-en] { display: block; }
+  html:not(.en) [data-en] { display: none !important; }
+  html.en [data-ca] { display: none !important; }
 
   @media (max-width: 720px) {
-    #line { left: 20px; }
+    #line { left: 44px; top: 80px; }
     .event, .event:nth-child(even of .event) {
       width: 100%; margin-left: 0; padding: 0 0 64px 52px;
     }
     .event .node, .event:nth-child(even of .event) .node { left: 12px; right: auto; }
     #timeline { padding-top: 80px; }
   }
+
+  .jump {display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+  .jump a,.answers button{font:inherit;text-decoration:none;color:var(--accent);background:white;border:1px solid #d2d2d7;border-radius:99px;padding:10px 17px;cursor:pointer;transition:transform .2s}
+  .jump a:hover,.answers button:hover{transform:translateY(-3px);border-color:var(--accent)}
+  #quiz{max-width:680px;margin:0 auto 80px;padding:32px;background:white;border:1px solid #e7e7eb;border-radius:24px;text-align:center}
+  #quiz h2{margin-bottom:16px;font-size:28px} .answers{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
+  #feedback{margin-top:18px;min-height:50px;color:var(--accent);line-height:1.5}
+  .event{scroll-margin-top:80px}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}.event,.reveal{opacity:1;transform:none}#particles{display:none}}
 </style>
 </head>
 <body>
@@ -181,14 +188,15 @@
 <header>
   <canvas id="particles"></canvas>
   <div class="hero-inner">
-    <div class="hero-kicker" data-ca>2019 — 2023 · Una història recent</div>
-    <div class="hero-kicker" data-en>2019 — 2023 · A recent history</div>
+    <div class="hero-kicker" data-ca>2019 - 2023 · Una història recent</div>
+    <div class="hero-kicker" data-en>2019 - 2023 · A recent history</div>
     <h1>
       <span data-ca>La COVID-19:<br>una <em>cronologia</em></span>
       <span data-en>COVID-19:<br>a <em>timeline</em></span>
     </h1>
     <p class="hero-sub" data-ca>Com un virus desconegut va canviar el món en poques setmanes, i com la ciència hi va respondre.</p>
     <p class="hero-sub" data-en>How an unknown virus changed the world in a few weeks, and how science answered.</p>
+    <nav class="jump" aria-label="Timeline"><a href="#e0">2019</a><a href="#e1">2020</a><a href="#e2">2020-2021</a><a href="#e3">2023</a></nav>
   </div>
   <div class="scroll-hint">
     <span data-ca>Fes scroll</span><span data-en>Scroll down</span>
@@ -199,21 +207,21 @@
 <main id="timeline">
   <div id="line"><div id="line-fill"></div></div>
 
-  <div class="event">
+  <div class="event" id="e0">
     <div class="node"></div>
     <div class="year" data-ca>2019</div>
     <div class="year" data-en>2019</div>
     <div class="card">
       <h3 data-ca>Els primers casos</h3>
       <h3 data-en>The first cases</h3>
-      <p data-ca>Al desembre es detecten els primers casos d'una pneumònia desconeguda a Wuhan, Xina. Ningú sap encara què està passant.</p>
-      <p data-en>In December, the first cases of an unknown pneumonia are detected in Wuhan, China. Nobody knows what is happening yet.</p>
+      <p data-ca>Al desembre es detecten els primers casos d'una pneumònia desconeguda a Wuhan, Xina. Més endavant, els casos es relacionen amb un nou coronavirus.</p>
+      <p data-en>In December, the first cases of an unknown pneumonia are detected in Wuhan, China. The cases are later linked to a new coronavirus.</p>
       <span class="date-badge" data-ca>Desembre 2019</span>
       <span class="date-badge" data-en>December 2019</span>
     </div>
   </div>
 
-  <div class="event">
+  <div class="event" id="e1">
     <div class="node"></div>
     <div class="year">2020</div>
     <div class="card">
@@ -226,28 +234,28 @@
     </div>
   </div>
 
-  <div class="event">
+  <div class="event" id="e2">
     <div class="node"></div>
     <div class="year" data-ca>2020–2021</div>
     <div class="year" data-en>2020–2021</div>
     <div class="card">
       <h3 data-ca>La ciència s'accelera</h3>
       <h3 data-en>Science speeds up</h3>
-      <p data-ca>La recerca científica avança més ràpid que mai i es desenvolupen les primeres vacunes contra el virus en temps rècord.</p>
-      <p data-en>Scientific research moves faster than ever and the first vaccines against the virus are developed in record time.</p>
+      <p data-ca>La recerca científica s'accelera i es desenvolupen les primeres vacunes contra la COVID-19.</p>
+      <p data-en>Scientific research speeds up and the first vaccines against COVID-19 are developed.</p>
       <span class="date-badge" data-ca>2020 – 2021</span>
       <span class="date-badge" data-en>2020 – 2021</span>
     </div>
   </div>
 
-  <div class="event">
+  <div class="event" id="e3">
     <div class="node"></div>
     <div class="year">2023</div>
     <div class="card">
       <h3 data-ca>El final de l'emergència</h3>
       <h3 data-en>The end of the emergency</h3>
-      <p data-ca>El 5 de maig, l'OMS anuncia el final de l'emergència de salut pública internacional: el virus ja es considera una malaltia establerta i controlada.</p>
-      <p data-en>On May 5, the WHO announces the end of the international public health emergency: the virus is now considered an established and controlled disease.</p>
+      <p data-ca>El 5 de maig, l'OMS anuncia el final de l'emergència de salut pública internacional: la COVID-19 passa a gestionar-se com un problema de salut a llarg termini. Això no vol dir que el virus hagi desaparegut.</p>
+      <p data-en>On May 5, the WHO announces the end of the international public health emergency: COVID-19 becomes a long-term health issue. This does not mean the virus has disappeared.</p>
       <span class="date-badge" data-ca>5 de maig de 2023</span>
       <span class="date-badge" data-en>May 5, 2023</span>
     </div>
@@ -259,23 +267,31 @@
   <div class="pill" data-en>And today?</div>
   <h2 data-ca>La COVID-19 <span class="em-accent">ara</span></h2>
   <h2 data-en>COVID-19 <span class="em-accent">now</span></h2>
-  <p data-ca>Avui la COVID-19 ja no és una emergència mundial, però el virus continua circulant. Gràcies a les vacunes i a la immunitat, els casos greus són molts menys que al principi, i la gent es continua vacunant per protegir-se.</p>
-  <p data-en>Today COVID-19 is no longer a global emergency, but the virus is still around. Thanks to vaccines and immunity, severe cases are far less common than at the beginning, and people keep getting vaccinated to stay protected.</p>
+  <p data-ca>El virus continua circulant i encara pot causar casos greus i morts. Les vacunes ajuden a protegir contra la malaltia greu, sobretot les persones amb més risc. El final de l'emergència no és el final de la COVID-19.</p>
+  <p data-en>The virus is still circulating and can still cause severe illness and deaths. Vaccines help protect against severe disease, especially for people at higher risk. The end of the emergency is not the end of COVID-19.</p>
 </section>
 
+<section id="quiz">
+<h2 data-ca>Ho recordes?</h2><h2 data-en>Do you remember?</h2>
+<p data-ca>Quan va acabar l'emergència de salut pública internacional?</p><p data-en>When did the international public health emergency end?</p>
+<div class="answers"><button onclick="answer(false)">2020</button><button onclick="answer(false)">2021</button><button onclick="answer(true)">2023</button></div>
+<p id="feedback" aria-live="polite"></p>
+</section>
 <footer>
   <h4 data-ca>Fonts</h4>
   <h4 data-en>Sources</h4>
-  <a href="https://www.who.int/es/news/item/27-04-2020-who-timeline---covid-19" target="_blank" rel="noopener">OMS — Cronología de la respuesta a la COVID-19</a>
-  <a href="https://es.wikipedia.org/wiki/Pandemia_de_COVID-19" target="_blank" rel="noopener">Wikipedia — Pandemia de COVID-19</a>
-  <a href="https://www.medintensiva.org/es-pandemia-por-covid-19-el-mayor-articulo-S0210569120301017" target="_blank" rel="noopener">Medicina Intensiva — La pandemia por COVID-19</a>
-  <a href="https://www.who.int/news/item/05-05-2023-statement-on-the-fifteenth-meeting-of-the-international-health-regulations-(2005)-emergency-committee-regarding-the-coronavirus-disease-(covid-19)-pandemic" target="_blank" rel="noopener">WHO — Statement on the end of the emergency (5 May 2023)</a>
+  <a href="https://www.who.int/es/news/item/27-04-2020-who-timeline---covid-19" target="_blank" rel="noopener">OMS - Cronología de la respuesta a la COVID-19</a>
+  <a href="https://www.who.int/news/item/05-05-2023-statement-on-the-fifteenth-meeting-of-the-international-health-regulations-(2005)-emergency-committee-regarding-the-coronavirus-disease-(covid-19)-pandemic" target="_blank" rel="noopener">WHO - Statement on the end of the emergency (5 May 2023)</a>
+  <a href="https://www.who.int/news-room/fact-sheets/detail/coronavirus-disease-(covid-19)" target="_blank" rel="noopener">WHO - COVID-19: facts and prevention</a>
 </footer>
 
 <script>
+  function answer(ok){const en=document.documentElement.lang==='en';document.getElementById('feedback').textContent=ok?(en?'Correct! 5 May 2023. The virus did not disappear.':'Correcte! El 5 de maig de 2023. El virus no va desaparèixer.'):(en?'Try again. It was after the first vaccines.':'Torna-ho a provar. Va ser després de les primeres vacunes.');}
   // ---------- language ----------
   function setLang(l) {
+    document.getElementById('feedback').textContent = '';
     document.documentElement.lang = l;
+    document.documentElement.classList.toggle('en', l === 'en');
     document.getElementById('btn-ca').classList.toggle('active', l === 'ca');
     document.getElementById('btn-en').classList.toggle('active', l === 'en');
   }
