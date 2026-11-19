@@ -61,6 +61,11 @@ h2{font-size:clamp(30px,5vw,52px);letter-spacing:-.03em;margin-bottom:10px}
 .card p{font-size:16px;line-height:1.55;color:#aab6cf}
 .badge{display:inline-block;margin-top:12px;font:600 11px var(--mono);letter-spacing:.1em;color:var(--cell);border:1px solid rgba(52,224,196,.35);border-radius:4px;padding:4px 8px}
 .ev:nth-of-type(odd) .card{text-align:left}
+.lg{display:flex;gap:10px;align-items:flex-start;margin-top:10px}
+.lg i{font:700 10px var(--mono);color:var(--bg);background:var(--cell);border-radius:3px;padding:2px 6px;margin-top:4px;flex:none;font-style:normal}
+.lg.en i{background:var(--spike2)}
+.lg p{margin:0}
+.lg.en p{color:#8c9ab5}
 /* emergency meter */
 #meter{background:var(--bg2);border-block:1px solid var(--line)}
 .bar{margin-top:40px;height:44px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--line);overflow:hidden;position:relative}
@@ -105,7 +110,7 @@ footer a{display:block;color:var(--cell);font-size:15px;line-height:2;text-decor
 <header>
   <canvas id="virus"></canvas>
   <div class="hero">
-    <div class="tag">Outbreak file · 2019 – 2023</div>
+    <div class="tag">Outbreak file · 2019 – today</div>
     <h1>COVID<span>-19</span></h1>
     <p class="sub">The story of a new coronavirus that went around the world, and how science responded. <b>Move your cursor to disturb the virus.</b></p>
   </div>
@@ -128,29 +133,44 @@ footer a{display:block;color:var(--cell);font-size:15px;line-height:2;text-decor
 
 <section id="log"><div class="wrap" style="position:relative" id="timeline">
   <div class="lab">// 02 Outbreak log</div>
-  <h2>How it unfolded</h2>
-  <p class="lead" style="margin-bottom:60px">Four moments from the WHO record.</p>
+  <h2>Com va passar · How it unfolded</h2>
+  <p class="lead" style="margin-bottom:60px">Cinc moments del registre de l'OMS. · Five moments from the WHO record.</p>
   <div id="line"><div id="fill"></div></div>
 
   <div class="ev" id="e0"><div class="node"></div>
-    <div class="date">DEC 2019</div>
-    <div class="card" data-log="LOG 01"><h3>The first cases</h3><p>In December, the first cases of an unknown pneumonia are detected in Wuhan, China. The cases are later linked to a new coronavirus.</p><span class="badge">CASE ZERO</span></div></div>
+    <div class="date">DES 2019 · DEC 2019</div>
+    <div class="card" data-log="LOG 01"><h3>Els primers casos · The first cases</h3>
+      <div class="lg"><i>CA</i><p>Es detecten els primers casos d'una pneumònia desconeguda a Wuhan, Xina. Més endavant es relacionen amb un nou coronavirus.</p></div>
+      <div class="lg en"><i>EN</i><p>The first cases of an unknown pneumonia are detected in Wuhan, China. They are later linked to a new coronavirus.</p></div>
+      <span class="badge">CASE ZERO</span></div></div>
 
   <div class="ev" id="e1"><div class="node"></div>
-    <div class="date">30 JAN 2020</div>
-    <div class="card" data-log="LOG 02"><h3>Global health alert</h3><p>The WHO declares the outbreak a Public Health Emergency of International Concern, its highest level of alarm.</p><span class="badge">PHEIC</span></div></div>
+    <div class="date">11 MARÇ 2020 · MAR 11, 2020</div>
+    <div class="card" data-log="LOG 02"><h3>Pandèmia · Pandemic</h3>
+      <div class="lg"><i>CA</i><p>L'11 de març, l'OMS declara la COVID-19 pandèmia. S'apliquen confinaments i restriccions de moviment a molts països.</p></div>
+      <div class="lg en"><i>EN</i><p>On March 11, the WHO declares COVID-19 a pandemic. Lockdowns and movement restrictions are applied in many countries.</p></div>
+      <span class="badge">CONFINAMENT · LOCKDOWN</span></div></div>
 
   <div class="ev" id="e2"><div class="node"></div>
-    <div class="date">11 MAR 2020</div>
-    <div class="card" data-log="LOG 03"><h3>It's a pandemic</h3><p>The WHO declares COVID-19 a pandemic. Schools and shops close, and many countries apply lockdowns and movement restrictions.</p><span class="badge">LOCKDOWN</span></div></div>
+    <div class="date">2020–2021</div>
+    <div class="card" data-log="LOG 03"><h3>La ciència s'accelera · Science speeds up</h3>
+      <div class="lg"><i>CA</i><p>S'accelera la recerca científica i es desenvolupen les primeres vacunes contra la COVID-19.</p></div>
+      <div class="lg en"><i>EN</i><p>Scientific research speeds up and the first vaccines against COVID-19 are developed.</p></div>
+      <span class="badge">VACUNES · VACCINES</span></div></div>
 
   <div class="ev" id="e3"><div class="node"></div>
-    <div class="date">2020–2021</div>
-    <div class="card" data-log="LOG 04"><h3>Science speeds up</h3><p>Research accelerates and the first vaccines against COVID-19 are developed.</p><span class="badge">VACCINES</span></div></div>
+    <div class="date">5 MAIG 2023 · MAY 5, 2023</div>
+    <div class="card" data-log="LOG 04"><h3>Fi de l'emergència · The emergency ends</h3>
+      <div class="lg"><i>CA</i><p>L'OMS anuncia el final de l'emergència de salut pública internacional: feia més d'un any que la pandèmia baixava, amb molta immunitat per vacunes i contagis, menys morts i hospitals menys saturats. Però avisa que el virus no ha desaparegut.</p></div>
+      <div class="lg en"><i>EN</i><p>The WHO announces the end of the international public health emergency: the pandemic had been declining for over a year, with high immunity from vaccines and infections, fewer deaths and less pressure on hospitals. But it warns that the virus has not disappeared.</p></div>
+      <span class="badge">FI DE L'EMERGÈNCIA · EMERGENCY LIFTED</span></div></div>
 
   <div class="ev" id="e4"><div class="node"></div>
-    <div class="date">5 MAY 2023</div>
-    <div class="card" data-log="LOG 05"><h3>The emergency ends</h3><p>The WHO announces the end of the international public health emergency. COVID-19 becomes a long-term health issue. This does not mean the virus has disappeared.</p><span class="badge">EMERGENCY LIFTED</span></div></div>
+    <div class="date">AVUI · TODAY</div>
+    <div class="card" data-log="LOG 05"><h3>La COVID-19 avui · COVID-19 today</h3>
+      <div class="lg"><i>CA</i><p>El virus continua circulant i encara causa morts, encara que moltes menys que durant la pandèmia. L'OMS encara registra més de mil morts notificades cada mes, sobretot de gent gran. Les vacunes protegeixen de la malaltia greu.</p></div>
+      <div class="lg en"><i>EN</i><p>The virus is still circulating and still causes deaths, although far fewer than during the pandemic. The WHO still records over a thousand reported deaths every month, mostly of older people. Vaccines protect against severe disease.</p></div>
+      <span class="badge">ENCARA ACTIVA · STILL ACTIVE</span></div></div>
 </div></section>
 
 <section id="meter"><div class="wrap">
@@ -169,7 +189,8 @@ footer a{display:block;color:var(--cell);font-size:15px;line-height:2;text-decor
 <section id="today" class="reveal"><div class="wrap">
   <div class="alert">STATUS: ONGOING</div>
   <h2>COVID-19 <span style="color:var(--spike)">today</span></h2>
-  <p>The virus is still circulating and can still cause severe illness and deaths. Vaccines help protect against severe disease, especially for people at higher risk. The end of the emergency is not the end of COVID-19.</p>
+  <div class="lg" style="max-width:640px;margin:0 auto"><i>CA</i><p>El virus continua circulant i encara pot causar malaltia greu i morts. Les vacunes ajuden a protegir de la malaltia greu, sobretot les persones de més risc. El final de l'emergència no és el final de la COVID-19.</p></div>
+  <div class="lg en" style="max-width:640px;margin:10px auto 0"><i>EN</i><p>The virus is still circulating and can still cause severe illness and deaths. Vaccines help protect against severe disease, especially for people at higher risk. The end of the emergency is not the end of COVID-19.</p></div>
 </div></section>
 
 <section id="quiz"><div class="wrap">
@@ -186,6 +207,8 @@ footer a{display:block;color:var(--cell);font-size:15px;line-height:2;text-decor
   <h4>Sources</h4>
   <a href="https://www.who.int/es/news/item/27-04-2020-who-timeline---covid-19" target="_blank" rel="noopener">WHO - Timeline of the COVID-19 response</a>
   <a href="https://www.who.int/news/item/05-05-2023-statement-on-the-fifteenth-meeting-of-the-international-health-regulations-(2005)-emergency-committee-regarding-the-coronavirus-disease-(covid-19)-pandemic" target="_blank" rel="noopener">WHO - Statement on the end of the emergency (5 May 2023)</a>
+  <a href="https://www.who.int/news-room/speeches/item/who-director-general-s-opening-remarks-at-the-media-briefing---5-may-2023" target="_blank" rel="noopener">WHO - Director-General's remarks, 5 May 2023</a>
+  <a href="https://www.who.int/publications/m/item/covid-19-epidemiological-update-edition-177" target="_blank" rel="noopener">WHO - COVID-19 epidemiological update (2025)</a>
   <a href="https://www.who.int/news-room/fact-sheets/detail/coronavirus-disease-(covid-19)" target="_blank" rel="noopener">WHO - COVID-19: facts and prevention</a>
 </footer>
 
@@ -227,3 +250,4 @@ function fr(){ctx.clearRect(0,0,W,H);
 </script>
 </body>
 </html>
+
